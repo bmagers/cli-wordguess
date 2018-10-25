@@ -7,8 +7,10 @@ function Letter(char) {
   this.guess = function(newChar) {
     if (newChar === this.char) {
       this.guessed = true;
+      return true;
+    } else {
+      return false;
     }
-    return this.guessed;
   }
 }
 

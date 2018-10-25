@@ -11,19 +11,24 @@ function Word(newWord) {
     word.forEach(function(item, index) {
       result += item.display();
     });
+    result = result.split("").join(" ");
     return result;
   }
   this.guess = function(char) {
+    var guessed = false;
     word.forEach(function(item, index) {
       var letter = word[index];
-      console.log(char + " is the guess and " + letter.char + " is the letter");
-      console.log(letter.guessed);
-      if (letter.guess(char)) {
-        return "Correct!";
-      } else {
-        return "Incorrect. :-(";
-      }
+      letter.guess(char) ? guessed = true : null;
     });
+    return guessed;
+  }
+  this.remaining = function() {
+    var result = 0;
+    word.forEach(function(item, index) {
+      var letter = word[index];
+      letter.guessed === false ? result++ : null;
+    });
+    return result;
   }
 }
 
